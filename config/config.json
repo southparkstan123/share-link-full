@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "admin",
+    "password": "123456",
+    "database": "share_link",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "admin",
+    "password": "123456",
+    "database": "share_link_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "admin",
+    "password": "123456",
+    "database": "share_link_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
