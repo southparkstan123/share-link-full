@@ -6,7 +6,7 @@
   <ng-template #noKeyword>
     <h2>All Links</h2>
   </ng-template>
-  <div class="table-responsive" *ngIf="links !== null; else emptyList">
+  <div class="table-responsive" *ngIf="(links | async)?.length !== 0; else emptyList">
     <table class="table table-striped table-hover">
       <thead>
         <tr>
