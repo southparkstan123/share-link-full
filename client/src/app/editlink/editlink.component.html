@@ -1,0 +1,47 @@
+<div class="row">
+    <h3>Edit Link</h3>
+</div>
+<div class="row">
+    <form [formGroup]="editLinkForm" (ngSubmit)="onUpdateLink()">
+        <input type="hidden" class="form-control" id="id" formControlName="id">
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" id="url" formControlName="url">
+            <div *ngIf="editLinkForm.controls['url'].dirty">
+                <span class="error help-block" *ngIf="editLinkForm.controls['url'].hasError('required')">
+                    URL is required
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" formControlName="title">
+            <div *ngIf="editLinkForm.controls['title'].dirty">
+                <span class="error help-block" *ngIf="editLinkForm.controls['title'].hasError('required')">
+                    Title is required
+                </span>
+            </div>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" formControlName="isShared">Is shared ?</label>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-warning" (click)="addTag()">Add Tag</button>
+        </div>
+        <div formArrayName="tags" [formGroup]="editLinkForm">
+            <div class="form-group" *ngFor="let tag of editLinkForm.controls.tags.controls; let i=index">
+                <div class="input-group" >
+                    <input type="text" class="form-control" placeholder="Enter the tag" formControlName="{{i}}" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-default btn-danger" (click)="removeTag(i)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" [ngClass]="{'disabled':editLinkForm.status === 'INVALID'}" >Submit</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="button" class="btn btn-info" (click)="backToMainPage()">Back To List</button>
+    </form>
+</div>

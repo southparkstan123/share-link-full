@@ -1,0 +1,49 @@
+<div class="col-xs-12">
+  <app-search (searchKeyword)="onSearchKeyword($event)"></app-search>
+  <div *ngIf="keyword !== ''; else noKeyword">
+    <h2>Links for #{{keyword}}</h2>  
+  </div>
+  <ng-template #noKeyword>
+    <h2>All Links</h2>
+  </ng-template>
+  <div class="table-responsive" *ngIf="links !== null; else emptyList">
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>URL</th>
+          <th>Tags</th>
+          <th>Is Shared?</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let link of links | async | linkfilter:keyword">
+          <td>{{link.title}}</td>
+          <td>{{link.url}}</td>
+          <td>
+            <div *ngIf="link.tags.length !== 0; else emptyTag">
+              <span *ngFor="let tag of link.tags" class="badge badge-primary">{{tag}}</span>
+            </div>
+          </td>
+          <td>
+            <span class="glyphicon" [ngClass]="{'glyphicon-ok': link.isShared === true, 'glyphicon-remove': link.isShared === false}"></span>
+          </td>
+          <td>
+              <button class="btn btn-sm btn-primary" (click)="onEditLink(link)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="onDeleteLink(link.id)">Delete</button>
+            <button class="btn btn-sm btn-success" (click)="onVisitLink(link.url)">Visit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #emptyList>
+    <div class="vcenter">
+      <h3>No Links</h3>
+    </div>
+  </ng-template>
+  <ng-template #emptyTag>
+      <span>Nil</span>
+  </ng-template>
+</div>
