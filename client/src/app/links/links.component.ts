@@ -15,6 +15,7 @@ import { Subject } from 'rxjs/Subject';
 
 export class LinksComponent implements OnInit {
   @Input() keyword: string;
+  @Input() isShared: boolean;
   @Output() linkIdToBeDeleted = new EventEmitter<{id: string}>();
 
   subscription: Subscription;
@@ -29,6 +30,10 @@ export class LinksComponent implements OnInit {
 
   onSearchKeyword(keyword: string): void {
     this.keyword = keyword;
+  }
+
+  onFilterLinks(isShared: boolean): void {
+    this.isShared = isShared;
   }
 
   onDeleteLink(id: number): void {

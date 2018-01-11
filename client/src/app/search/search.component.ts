@@ -9,10 +9,16 @@ export class SearchComponent implements OnInit {
 
   constructor() { }
   @Output() searchKeyword = new EventEmitter();
+  @Output() filterLinks = new EventEmitter();
+
   ngOnInit() {
   }
   onSearchKeyword(event) {
-    this.searchKeyword.emit(event.target.value);
+    this.searchKeyword.emit(event.target.value.trim());
+  }
+
+  onFilterLinks(isShared: boolean) {
+    this.filterLinks.emit(isShared);
   }
 
 }

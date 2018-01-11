@@ -15,6 +15,7 @@ import { LinkfilterPipe } from './linkfilter.pipe';
 import { LinksService } from './links.service';
 import { EditlinkComponent } from './editlink/editlink.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { IsShareLinkFilterPipe } from './is-share-link-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     SearchComponent,
     LinkfilterPipe,
     EditlinkComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    IsShareLinkFilterPipe
   ],
   imports: [
     BrowserModule,
