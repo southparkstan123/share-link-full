@@ -1,5 +1,5 @@
 # Database Configuration
-Before to startup the share-link-full, you should :
+Before to startup this application, you should :
 1. Create the database for development in postgre shell
 2. (Optional) Setting the permission of database for development by 'psql -U <user_name> -W -h <hostname> <DB_name>'
 3. Modify the 'config/config.json' setting according to the database for both development and testing(for example user_name, password, DB_name, host).
