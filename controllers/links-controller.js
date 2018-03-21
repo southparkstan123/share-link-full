@@ -14,7 +14,6 @@ module.exports = class LinksController{
                 id: req.params.id
             }
         }).then((result) => {
-            console.log(result);
             LinkModel.findAll()
                 .then(links => res.json(links))
                 .catch(err => res.json(err));
@@ -56,11 +55,10 @@ module.exports = class LinksController{
         link.tags = req.body.tags;
         link.save()
         .then((result) => {
-            console.log(result);
             LinkModel.findAll()
                 .then(links => res.json(links))
                 .catch(err => res.json(err));
         })
-        .catch(err => console.log(err));
+        .catch(err => res.json(err));
     };
 }
