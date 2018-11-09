@@ -2,14 +2,14 @@ const LinkModel = require('../models').link;
 
 module.exports = class LinksController{
 
-    getAllLinks(req, res) {
-        LinkModel.findAll()
+    static getAllLinks(req, res) {
+        return LinkModel.findAll()
             .then(links => res.json(links))
             .catch(err => res.json(err));
     };
 
-    deleteLinkById(req, res) {
-        LinkModel.destroy({
+    static deleteLinkById(req, res) {
+        return LinkModel.destroy({
             where: {
                 id: req.params.id
             }
@@ -20,8 +20,8 @@ module.exports = class LinksController{
         }).catch(err => res.json(err));
     };
 
-    updateLinkById(req, res) {
-        LinkModel.findOne({
+     static updateLinkById(req, res) {
+        return LinkModel.findOne({
             where: {
                 id: req.params.id
             }
@@ -38,8 +38,8 @@ module.exports = class LinksController{
         }).catch(err => res.json(err));
     };
 
-    getLinkById(req, res) {
-        LinkModel.findOne({
+    static getLinkById(req, res) {
+        return LinkModel.findOne({
             where: {
                 id: req.params.id
             }
@@ -53,7 +53,7 @@ module.exports = class LinksController{
         link.title = req.body.title;
         link.isShared = req.body.isShared;
         link.tags = req.body.tags;
-        link.save()
+        return link.save()
         .then((result) => {
             LinkModel.findAll()
                 .then(links => res.json(links))
